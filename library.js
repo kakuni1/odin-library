@@ -9,10 +9,7 @@ function Book(title, author, id) {
   };
 }
 
-const bookA1 = new Book("a1", "author one", crypto.randomUUID());
-const bookA2 = new Book("a2", "author two", crypto.randomUUID());
-const bookB1 = new Book("b1", "author three", crypto.randomUUID());
+const bookEntry = new Book("a1", "author one", crypto.randomUUID());
 
-console.log(bookA1.printTitle());
-console.log(bookA2.printTitle());
-console.log(bookB1.printTitle());
+myLibrary[0] = bookEntry;
+console.log(myLibrary[0]);
