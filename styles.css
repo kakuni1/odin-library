@@ -81,8 +81,16 @@ body {
 }
 
 .book div {
+  font-family: "Bitcount Prop Double", system-ui;
   background-color: #adada5;
+  padding-top: 2.5px;
+  padding-bottom: 0.5px;
   border-radius: 2.5px;
-  text-align: center;
   min-width: 100%;
+  text-align: center;
+}
+
+.book div:hover {
+  background-color: #c7c7c1;
+  opacity: 0.75;
 }
