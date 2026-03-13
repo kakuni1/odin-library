@@ -41,6 +41,10 @@ document.querySelector(".shelf").appendChild(div);
 
 myLibrary.forEach((book) => {
   const bookDiv = document.createElement("div");
-  bookDiv.textContent = book.title;
+  const bookPara = document.createElement("p");
+
+  bookPara.textContent = `Title: ${book.title}\nAuthor: ${book.authorNameFirst} ${book.authorNameLast}`;
+  bookDiv.appendChild(bookPara);
+
   document.querySelector(".book").appendChild(bookDiv);
 });
