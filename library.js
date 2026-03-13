@@ -9,7 +9,12 @@ function Book(title, author, id) {
   };
 }
 
-const bookEntry = new Book("a1", "author one", crypto.randomUUID());
+const bookFirstEntry = new Book("a1", "author one", crypto.randomUUID());
 
-myLibrary[0] = bookEntry;
+myLibrary[0] = bookFirstEntry;
 console.log(myLibrary[0]);
+
+const container = document.querySelector(".container");
+const div = document.createElement("div");
+div.classList.add("library");
+container.appendChild(div);
