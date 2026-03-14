@@ -40,15 +40,15 @@
       </svg>
       <div class="shelf"></div>
       <dialog id="open-window" closedby="any">
-        <h3>Add new book to collection</h3>
+        <h3>Add a new book to collection</h3>
         <br />
         <p>Title:</p>
-        <input type="text" name="book-title" />
+        <input type="text" id="book-title" />
         <p>Author:</p>
-        <input type="text" name="author-first-name" placeholder="First Name" />
-        <input type="text" name="author-last-name" placeholder="Last Name" />
+        <input type="text" id="author-first-name" placeholder="First Name" />
+        <input type="text" id="author-last-name" placeholder="Last Name" />
         <button id="close-window">cancel</button>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" onclick="addBookToLibrary()" />
       </dialog>
     </div>
   </body>

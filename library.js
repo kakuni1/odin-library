@@ -11,6 +11,22 @@ function Book(title, id, authorNameLast, authorNameFirst) {
   };
 }
 
+function addBookToLibrary() {
+  const bookTitle = document.getElementById("book-title");
+  const authorNameLast = document.getElementById("author-last-name");
+  const authorNameFirst = document.getElementById("author-first-name");
+  const titleInput = bookTitle.value;
+  const nameLastInput = authorNameLast.value;
+  const nameFirstInput = authorNameFirst.value;
+
+  myLibrary[3] = bookEntry = new Book(
+    titleInput,
+    crypto.randomUUID(),
+    nameLastInput,
+    nameFirstInput,
+  );
+}
+
 const bookFirstEntry = new Book(
   "Book of John",
   crypto.randomUUID(),
