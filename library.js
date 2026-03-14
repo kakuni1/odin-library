@@ -39,6 +39,18 @@ const div = document.createElement("div");
 div.className = "book";
 document.querySelector(".shelf").appendChild(div);
 
+const dialog = document.getElementById("open-window");
+const openWindow = document.getElementById("add-book-icon");
+const closeWindow = document.getElementById("close-window");
+
+openWindow.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+closeWindow.addEventListener("click", () => {
+  dialog.close();
+});
+
 myLibrary.forEach((book) => {
   const bookDiv = document.createElement("div");
   const bookPara = document.createElement("p");
