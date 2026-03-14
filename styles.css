@@ -71,6 +71,11 @@ h6 {
 
 body {
   background-color: #1f1f28;
+  font-family: "WDXL Lubrifont JP N", sans-serif;
+}
+
+dialog {
+  background-color: #ddddda;
 }
 
 #add-book-icon {
@@ -93,10 +98,7 @@ body {
 
 .book div {
   background-color: #adada5;
-  font-family: "Bitcount Prop Double", system-ui;
   font-size: 0.95rem;
-  padding-top: 2.5px;
-  padding-bottom: 0.5px;
   border-radius: 2.5px;
   min-width: 100%;
   text-align: center;
