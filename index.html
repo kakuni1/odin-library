@@ -39,9 +39,16 @@
         <path d="M14 17h6m-3 -3v6" />
       </svg>
       <div class="shelf"></div>
-      <dialog id="open-window">
-        <h3>Add: New Book</h3>
-        <button id="close-window">close</button>
+      <dialog id="open-window" closedby="any">
+        <h3>Add new book to collection</h3>
+        <br />
+        <p>Title:</p>
+        <input type="text" name="book-title" />
+        <p>Author:</p>
+        <input type="text" name="author-first-name" placeholder="First Name" />
+        <input type="text" name="author-last-name" placeholder="Last Name" />
+        <button id="close-window">cancel</button>
+        <input type="submit" value="Submit" />
       </dialog>
     </div>
   </body>
