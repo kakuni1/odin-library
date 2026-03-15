@@ -17,6 +17,10 @@ closeWindow.addEventListener("click", () => {
   dialog.close();
 });
 
+submit.addEventListener("click", () => {
+  dialog.close();
+});
+
 initialLibrary();
 
 function Book(title, id, authorNameLast, authorNameFirst) {
