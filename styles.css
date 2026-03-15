@@ -94,9 +94,14 @@ dialog {
   cursor: pointer;
 }
 
+.book-card {
+  display: grid;
+  grid-template-columns: 9fr 1fr;
+}
+
 .shelf > .book {
   display: grid;
-  grid-template: repeat(5, auto) / repeat(5, auto);
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   padding: 1rem;
   gap: 10px;
 }

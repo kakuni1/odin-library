@@ -55,6 +55,7 @@ function renderLibrary() {
     const bookPara = document.createElement("p");
 
     bookPara.textContent = `Title: ${book.title}\nAuthor: ${book.authorNameFirst} ${book.authorNameLast}`;
+    bookDiv.setAttribute("class", "book-card");
     bookDiv.appendChild(bookPara);
 
     const svgNS = "http://www.w3.org/2000/svg";
