@@ -57,7 +57,22 @@ function renderLibrary() {
     bookPara.textContent = `Title: ${book.title}\nAuthor: ${book.authorNameFirst} ${book.authorNameLast}`;
     bookDiv.appendChild(bookPara);
 
+    const svgNS = "http://www.w3.org/2000/svg";
+    const svg = document.createElementNS(svgNS, "svg");
+    svg.setAttribute("id", "remove-book-icon");
+    svg.setAttribute("height", "24px");
+    svg.setAttribute("viewBox", "0 -960 960 960");
+    svg.setAttribute("width", "24px");
+    svg.setAttribute("fill", "#c7c7c1");
+    const path = document.createElementNS(svgNS, "path");
+    path.setAttribute(
+      "d",
+      "m336-280-56-56 144-144-144-143 56-56 144 144 143-144 56 56-144 143 144 144-56 56-143-144-144 144Z",
+    );
+    svg.appendChild(path);
+
     document.querySelector(".book").appendChild(bookDiv);
+    bookDiv.appendChild(svg);
   });
 }
 

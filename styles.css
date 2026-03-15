@@ -85,7 +85,12 @@ dialog {
 }
 
 #add-book-icon:hover {
-  fill: #f3f3f2;
+  fill: #ddddda;
+  cursor: pointer;
+}
+
+#remove-book-icon:hover {
+  fill: #b5514a;
   cursor: pointer;
 }
 
@@ -102,11 +107,6 @@ dialog {
   border-radius: 2.5px;
   min-width: 100%;
   text-align: center;
-}
-
-.book div:hover {
-  background-color: #c7c7c1;
-  opacity: 0.75;
 }
 
 .book > div p {
