@@ -1,5 +1,24 @@
 const myLibrary = [];
 
+const shelf = document.querySelector(".shelf");
+const div = document.createElement("div");
+div.className = "book";
+document.querySelector(".shelf").appendChild(div);
+
+const dialog = document.getElementById("open-window");
+const openWindow = document.getElementById("add-book-icon");
+const closeWindow = document.getElementById("close-window");
+
+openWindow.addEventListener("click", () => {
+  dialog.showModal();
+});
+
+closeWindow.addEventListener("click", () => {
+  dialog.close();
+});
+
+initialLibrary();
+
 function Book(title, id, authorNameLast, authorNameFirst) {
   this.title = title;
   this.id = id;
@@ -19,60 +38,48 @@ function addBookToLibrary() {
   const nameLastInput = authorNameLast.value;
   const nameFirstInput = authorNameFirst.value;
 
-  myLibrary[3] = bookEntry = new Book(
-    titleInput,
-    crypto.randomUUID(),
-    nameLastInput,
-    nameFirstInput,
+  document.querySelector(".book").innerHTML = "";
+  myLibrary.push(
+    new Book(titleInput, crypto.randomUUID(), nameLastInput, nameFirstInput),
   );
+  renderLibrary();
 }
 
-const bookFirstEntry = new Book(
-  "Book of John",
-  crypto.randomUUID(),
-  "Doe",
-  "John",
-);
-const bookSecondEntry = new Book(
-  "Book of Jane",
-  crypto.randomUUID(),
-  "Doe",
-  "Jane",
-);
-const bookThirdEntry = new Book(
-  "Book of Smith",
-  crypto.randomUUID(),
-  "Smith",
-  "John",
-);
+function renderLibrary() {
+  myLibrary.forEach((book) => {
+    const bookDiv = document.createElement("div");
+    const bookPara = document.createElement("p");
 
-myLibrary[0] = bookFirstEntry;
-myLibrary[1] = bookSecondEntry;
-myLibrary[2] = bookThirdEntry;
+    bookPara.textContent = `Title: ${book.title}\nAuthor: ${book.authorNameFirst} ${book.authorNameLast}`;
+    bookDiv.appendChild(bookPara);
 
-const shelf = document.querySelector(".shelf");
-const div = document.createElement("div");
-div.className = "book";
-document.querySelector(".shelf").appendChild(div);
+    document.querySelector(".book").appendChild(bookDiv);
+  });
+}
 
-const dialog = document.getElementById("open-window");
-const openWindow = document.getElementById("add-book-icon");
-const closeWindow = document.getElementById("close-window");
+function initialLibrary() {
+  const bookFirstEntry = new Book(
+    "Book of John",
+    crypto.randomUUID(),
+    "Doe",
+    "John",
+  );
+  const bookSecondEntry = new Book(
+    "Book of Jane",
+    crypto.randomUUID(),
+    "Doe",
+    "Jane",
+  );
+  const bookThirdEntry = new Book(
+    "Book of Smith",
+    crypto.randomUUID(),
+    "Smith",
+    "John",
+  );
 
-openWindow.addEventListener("click", () => {
-  dialog.showModal();
-});
+  myLibrary[0] = bookFirstEntry;
+  myLibrary[1] = bookSecondEntry;
+  myLibrary[2] = bookThirdEntry;
 
-closeWindow.addEventListener("click", () => {
-  dialog.close();
-});
-
-myLibrary.forEach((book) => {
-  const bookDiv = document.createElement("div");
-  const bookPara = document.createElement("p");
-
-  bookPara.textContent = `Title: ${book.title}\nAuthor: ${book.authorNameFirst} ${book.authorNameLast}`;
-  bookDiv.appendChild(bookPara);
-
-  document.querySelector(".book").appendChild(bookDiv);
-});
+  renderLibrary();
+}
