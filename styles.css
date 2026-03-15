@@ -79,13 +79,13 @@ dialog {
 }
 
 #add-book-icon {
-  color: #c7c7c1;
+  fill: #c7c7c1;
   position: relative;
   margin: 1rem 1rem 1rem auto;
 }
 
 #add-book-icon:hover {
-  color: #f3f3f2;
+  fill: #f3f3f2;
   cursor: pointer;
 }
 
