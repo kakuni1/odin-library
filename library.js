@@ -46,7 +46,9 @@ function addBookToLibrary() {
   myLibrary.push(
     new Book(titleInput, crypto.randomUUID(), nameLastInput, nameFirstInput),
   );
+
   renderLibrary();
+  console.log(myLibrary);
 }
 
 function renderLibrary() {
@@ -56,11 +58,12 @@ function renderLibrary() {
 
     bookPara.textContent = `Title: ${book.title}\nAuthor: ${book.authorNameFirst} ${book.authorNameLast}`;
     bookDiv.setAttribute("class", "book-card");
+    bookDiv.setAttribute("data-id", book.id);
     bookDiv.appendChild(bookPara);
 
     const svgNS = "http://www.w3.org/2000/svg";
     const svg = document.createElementNS(svgNS, "svg");
-    svg.setAttribute("id", "remove-book-icon");
+    svg.setAttribute("class", "remove-book-icon");
     svg.setAttribute("height", "24px");
     svg.setAttribute("viewBox", "0 -960 960 960");
     svg.setAttribute("width", "24px");
@@ -74,6 +77,12 @@ function renderLibrary() {
 
     document.querySelector(".book").appendChild(bookDiv);
     bookDiv.appendChild(svg);
+
+    svg.addEventListener("click", () => {
+      // console.log(myLibrary[myLibrary.indexOf(book)].id);
+      const id = bookDiv.getAttribute("data-id");
+      console.log(`id: ${id}`);
+    });
   });
 }
 

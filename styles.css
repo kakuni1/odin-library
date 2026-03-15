@@ -89,7 +89,7 @@ dialog {
   cursor: pointer;
 }
 
-#remove-book-icon:hover {
+.remove-book-icon:hover {
   fill: #b5514a;
   cursor: pointer;
 }
