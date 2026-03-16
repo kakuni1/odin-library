@@ -8,6 +8,11 @@ document.querySelector(".shelf").appendChild(div);
 const dialog = document.getElementById("open-window");
 const openWindow = document.getElementById("add-book-icon");
 const closeWindow = document.getElementById("close-window");
+const submit = document.getElementById("submit");
+
+document.addEventListener("DOMContentLoaded", () => {
+  Book.createInitialLibrary();
+});
 
 openWindow.addEventListener("click", () => {
   dialog.showModal();
@@ -21,8 +26,6 @@ submit.addEventListener("click", () => {
   dialog.close();
 });
 
-initialLibrary();
-
 function Book(title, id, authorNameLast, authorNameFirst) {
   this.title = title;
   this.id = id;
@@ -34,6 +37,31 @@ function Book(title, id, authorNameLast, authorNameFirst) {
   };
 }
 
+Book.createInitialLibrary = function () {
+  const bookFirstEntry = new Book(
+    "Book of John",
+    crypto.randomUUID(),
+    "Doe",
+    "John",
+  );
+  const bookSecondEntry = new Book(
+    "Book of Jane",
+    crypto.randomUUID(),
+    "Doe",
+    "Jane",
+  );
+  const bookThirdEntry = new Book(
+    "Book of Smith",
+    crypto.randomUUID(),
+    "Smith",
+    "John",
+  );
+  myLibrary[0] = bookFirstEntry;
+  myLibrary[1] = bookSecondEntry;
+  myLibrary[2] = bookThirdEntry;
+  renderLibrary();
+};
+
 function addBookToLibrary() {
   const bookTitle = document.getElementById("book-title");
   const authorNameLast = document.getElementById("author-last-name");
@@ -42,17 +70,18 @@ function addBookToLibrary() {
   const nameLastInput = authorNameLast.value;
   const nameFirstInput = authorNameFirst.value;
 
-  document.querySelector(".book").innerHTML = "";
   myLibrary.push(
     new Book(titleInput, crypto.randomUUID(), nameLastInput, nameFirstInput),
   );
 
   renderLibrary();
-  console.log(myLibrary);
 }
 
 function renderLibrary() {
+  document.querySelector(".book").innerHTML = "";
   myLibrary.forEach((book) => {
+    // document.querySelector(".book").innerHTML = "";
+
     const bookDiv = document.createElement("div");
     const bookPara = document.createElement("p");
 
@@ -79,36 +108,16 @@ function renderLibrary() {
     bookDiv.appendChild(svg);
 
     svg.addEventListener("click", () => {
-      // console.log(myLibrary[myLibrary.indexOf(book)].id);
       const id = bookDiv.getAttribute("data-id");
-      console.log(`id: ${id}`);
+
+      for (let i = 0; i < myLibrary.length; i++) {
+        if (id === myLibrary[i].id) {
+          myLibrary.splice(myLibrary.indexOf(book), 1);
+          renderLibrary();
+          console.log(myLibrary);
+        }
+      }
     });
   });
-}
-
-function initialLibrary() {
-  const bookFirstEntry = new Book(
-    "Book of John",
-    crypto.randomUUID(),
-    "Doe",
-    "John",
-  );
-  const bookSecondEntry = new Book(
-    "Book of Jane",
-    crypto.randomUUID(),
-    "Doe",
-    "Jane",
-  );
-  const bookThirdEntry = new Book(
-    "Book of Smith",
-    crypto.randomUUID(),
-    "Smith",
-    "John",
-  );
-
-  myLibrary[0] = bookFirstEntry;
-  myLibrary[1] = bookSecondEntry;
-  myLibrary[2] = bookThirdEntry;
-
-  renderLibrary();
+  console.log(myLibrary);
 }
