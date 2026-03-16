@@ -40,7 +40,16 @@ function Book(
   this.authorNameLast = authorNameLast;
   this.authorNameFirst = authorNameFirst;
   this.readStatus = readStatus;
+
+  Book.prototype.toggleRead = function () {
+    this.readStatus = !this.readStatus;
+    renderLibrary();
+  };
 }
+
+Book.prototype.removeBook = function () {
+  myLibrary.splice(myLibrary.indexOf(this), 1);
+};
 
 Book.createInitialLibrary = function () {
   const bookFirstEntry = new Book(
@@ -132,7 +141,7 @@ function renderLibrary() {
       const bookId = bookDiv.getAttribute("data-id");
       const book = myLibrary.find((b) => b.id === bookId);
       if (book) {
-        book.readStatus = !book.readStatus;
+        book.toggleRead();
         renderLibrary();
       }
     });
@@ -141,7 +150,7 @@ function renderLibrary() {
       const bookId = bookDiv.getAttribute("data-id");
       const book = myLibrary.find((b) => b.id === bookId);
       if (book) {
-        myLibrary.splice(myLibrary.indexOf(book), 1);
+        book.removeBook();
         renderLibrary();
       }
     });
