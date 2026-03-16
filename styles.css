@@ -101,6 +101,11 @@ dialog {
 .book-card {
   display: grid;
   grid-template-columns: 9fr 1fr;
+  cursor: pointer;
+}
+
+.book-card:hover {
+  background-color: #c7c7c1;
 }
 
 .shelf > .book {

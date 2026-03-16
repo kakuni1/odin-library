@@ -32,13 +32,11 @@ function Book(
   authorNameLast,
   authorNameFirst,
   pageNumber,
-  pageCountTotal,
   readStatus,
 ) {
   this.title = title;
   this.id = id;
   this.pageNumber = pageNumber;
-  this.pageCountTotal = pageCountTotal;
   this.authorNameLast = authorNameLast;
   this.authorNameFirst = authorNameFirst;
   this.readStatus = readStatus;
@@ -51,7 +49,6 @@ Book.createInitialLibrary = function () {
     "Doe",
     "John",
     "123",
-    "245",
     false,
   );
   const bookSecondEntry = new Book(
@@ -60,7 +57,6 @@ Book.createInitialLibrary = function () {
     "Doe",
     "Jane",
     "133",
-    "257",
     false,
   );
   const bookThirdEntry = new Book(
@@ -69,8 +65,7 @@ Book.createInitialLibrary = function () {
     "Smith",
     "John",
     "245",
-    "260",
-    false,
+    true,
   );
   myLibrary[0] = bookFirstEntry;
   myLibrary[1] = bookSecondEntry;
@@ -85,9 +80,18 @@ function addBookToLibrary() {
   const titleInput = bookTitle.value;
   const nameLastInput = authorNameLast.value;
   const nameFirstInput = authorNameFirst.value;
+  const pageNumber = pageNumber.value;
+  const readStatus = readStatus.value;
 
   myLibrary.push(
-    new Book(titleInput, crypto.randomUUID(), nameLastInput, nameFirstInput),
+    new Book(
+      titleInput,
+      crypto.randomUUID(),
+      nameLastInput,
+      nameFirstInput,
+      pageNumber,
+      readStatus,
+    ),
   );
 
   renderLibrary();
@@ -100,8 +104,9 @@ function renderLibrary() {
     const bookPara = document.createElement("p");
 
     bookPara.textContent = `Title: ${book.title}\nAuthor: ${book.authorNameFirst} ${book.authorNameLast}\n`;
-    bookPara.textContent += `Page #: ${book.pageNumber}/${book.pageCountTotal}\n`;
-    bookPara.textContent += `Read: ${book.readStatus}`;
+    if (book.readStatus === false)
+      bookPara.textContent += `Page #: ${book.pageNumber}\n`;
+    else if (book.readStatus === true) bookPara.textContent += `✔`;
     bookDiv.setAttribute("class", "book-card");
     bookDiv.setAttribute("data-id", book.id);
     bookDiv.appendChild(bookPara);
@@ -123,14 +128,21 @@ function renderLibrary() {
     document.querySelector(".book").appendChild(bookDiv);
     bookDiv.appendChild(svg);
 
-    svg.addEventListener("click", () => {
-      const id = bookDiv.getAttribute("data-id");
+    bookDiv.addEventListener("click", () => {
+      const bookId = bookDiv.getAttribute("data-id");
+      const book = myLibrary.find((b) => b.id === bookId);
+      if (book) {
+        book.readStatus = !book.readStatus;
+        renderLibrary();
+      }
+    });
 
-      for (let i = 0; i < myLibrary.length; i++) {
-        if (id === myLibrary[i].id) {
-          myLibrary.splice(myLibrary.indexOf(book), 1);
-          renderLibrary();
-        }
+    svg.addEventListener("click", () => {
+      const bookId = bookDiv.getAttribute("data-id");
+      const book = myLibrary.find((b) => b.id === bookId);
+      if (book) {
+        myLibrary.splice(myLibrary.indexOf(book), 1);
+        renderLibrary();
       }
     });
   });
