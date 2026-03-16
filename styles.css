@@ -89,6 +89,10 @@ dialog {
   cursor: pointer;
 }
 
+.remove-book-icon {
+  padding-right: 0.25rem;
+}
+
 .remove-book-icon:hover {
   fill: #b5514a;
   cursor: pointer;

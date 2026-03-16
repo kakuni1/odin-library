@@ -52,7 +52,7 @@ Book.createInitialLibrary = function () {
     "John",
     "123",
     "245",
-    "no",
+    false,
   );
   const bookSecondEntry = new Book(
     "Book of Jane",
@@ -61,7 +61,7 @@ Book.createInitialLibrary = function () {
     "Jane",
     "133",
     "257",
-    "no",
+    false,
   );
   const bookThirdEntry = new Book(
     "Book of Smith",
@@ -70,7 +70,7 @@ Book.createInitialLibrary = function () {
     "John",
     "245",
     "260",
-    "no",
+    false,
   );
   myLibrary[0] = bookFirstEntry;
   myLibrary[1] = bookSecondEntry;
@@ -109,14 +109,14 @@ function renderLibrary() {
     const svgNS = "http://www.w3.org/2000/svg";
     const svg = document.createElementNS(svgNS, "svg");
     svg.setAttribute("class", "remove-book-icon");
-    svg.setAttribute("height", "24px");
+    svg.setAttribute("height", "40px");
     svg.setAttribute("viewBox", "0 -960 960 960");
-    svg.setAttribute("width", "24px");
-    svg.setAttribute("fill", "#c7c7c1");
+    svg.setAttribute("width", "40px");
+    svg.setAttribute("fill", "#393836");
     const path = document.createElementNS(svgNS, "path");
     path.setAttribute(
       "d",
-      "m336-280-56-56 144-144-144-143 56-56 144 144 143-144 56 56-144 143 144 144-56 56-143-144-144 144Z",
+      "m251.33-198.29-53.04-53.04L426.96-480 198.29-708.67l53.04-53.04L480-533.04l228.67-228.67 53.04 53.04L533.04-480l228.67 228.67-53.04 53.04L480-426.96 251.33-198.29Z",
     );
     svg.appendChild(path);
 
