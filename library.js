@@ -33,6 +33,7 @@ function Book(
   authorNameFirst,
   pageNumber,
   pageCountTotal,
+  readStatus,
 ) {
   this.title = title;
   this.id = id;
@@ -40,6 +41,7 @@ function Book(
   this.pageCountTotal = pageCountTotal;
   this.authorNameLast = authorNameLast;
   this.authorNameFirst = authorNameFirst;
+  this.readStatus = readStatus;
 }
 
 Book.createInitialLibrary = function () {
@@ -50,6 +52,7 @@ Book.createInitialLibrary = function () {
     "John",
     "123",
     "245",
+    "no",
   );
   const bookSecondEntry = new Book(
     "Book of Jane",
@@ -58,6 +61,7 @@ Book.createInitialLibrary = function () {
     "Jane",
     "133",
     "257",
+    "no",
   );
   const bookThirdEntry = new Book(
     "Book of Smith",
@@ -66,6 +70,7 @@ Book.createInitialLibrary = function () {
     "John",
     "245",
     "260",
+    "no",
   );
   myLibrary[0] = bookFirstEntry;
   myLibrary[1] = bookSecondEntry;
@@ -95,7 +100,8 @@ function renderLibrary() {
     const bookPara = document.createElement("p");
 
     bookPara.textContent = `Title: ${book.title}\nAuthor: ${book.authorNameFirst} ${book.authorNameLast}\n`;
-    bookPara.textContent += `Page #: ${book.pageNumber}/${book.pageCountTotal}`;
+    bookPara.textContent += `Page #: ${book.pageNumber}/${book.pageCountTotal}\n`;
+    bookPara.textContent += `Read: ${book.readStatus}`;
     bookDiv.setAttribute("class", "book-card");
     bookDiv.setAttribute("data-id", book.id);
     bookDiv.appendChild(bookPara);
