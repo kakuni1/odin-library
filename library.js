@@ -26,14 +26,15 @@ submit.addEventListener("click", () => {
   dialog.close();
 });
 
-function Book(title, id, authorNameLast, authorNameFirst) {
+function Book(title, pageCount, id, authorNameLast, authorNameFirst) {
   this.title = title;
   this.id = id;
+  this.pageCount = pageCount;
   this.authorNameLast = authorNameLast;
   this.authorNameFirst = authorNameFirst;
 
-  this.printTitle = function () {
-    return `title: ${this.title} \nby: ${this.authorNameFirst} ${this.authorNameLast} \nid: id${this.id}`;
+  this.printInfo = function () {
+    return `title: ${this.title} \nby: ${this.authorNameFirst} ${this.authorNameLast} \nid: id${this.id} \npage count: ${this.pageCount}`;
   };
 }
 
@@ -80,8 +81,6 @@ function addBookToLibrary() {
 function renderLibrary() {
   document.querySelector(".book").innerHTML = "";
   myLibrary.forEach((book) => {
-    // document.querySelector(".book").innerHTML = "";
-
     const bookDiv = document.createElement("div");
     const bookPara = document.createElement("p");
 
@@ -114,7 +113,6 @@ function renderLibrary() {
         if (id === myLibrary[i].id) {
           myLibrary.splice(myLibrary.indexOf(book), 1);
           renderLibrary();
-          console.log(myLibrary);
         }
       }
     });
