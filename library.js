@@ -40,15 +40,16 @@ function Book(
   this.authorNameLast = authorNameLast;
   this.authorNameFirst = authorNameFirst;
   this.readStatus = readStatus;
-
-  Book.prototype.toggleRead = function () {
-    this.readStatus = !this.readStatus;
-    renderLibrary();
-  };
 }
+
+Book.prototype.toggleRead = function () {
+  this.readStatus = !this.readStatus;
+  renderLibrary();
+};
 
 Book.prototype.removeBook = function () {
   myLibrary.splice(myLibrary.indexOf(this), 1);
+  renderLibrary();
 };
 
 Book.createInitialLibrary = function () {
@@ -138,21 +139,11 @@ function renderLibrary() {
     bookDiv.appendChild(svg);
 
     bookDiv.addEventListener("click", () => {
-      const bookId = bookDiv.getAttribute("data-id");
-      const book = myLibrary.find((b) => b.id === bookId);
-      if (book) {
-        book.toggleRead();
-        renderLibrary();
-      }
+      book.toggleRead();
     });
 
     svg.addEventListener("click", () => {
-      const bookId = bookDiv.getAttribute("data-id");
-      const book = myLibrary.find((b) => b.id === bookId);
-      if (book) {
-        book.removeBook();
-        renderLibrary();
-      }
+      book.removeBook();
     });
   });
   console.log(myLibrary);
