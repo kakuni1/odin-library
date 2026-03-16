@@ -26,16 +26,20 @@ submit.addEventListener("click", () => {
   dialog.close();
 });
 
-function Book(title, pageCount, id, authorNameLast, authorNameFirst) {
+function Book(
+  title,
+  id,
+  authorNameLast,
+  authorNameFirst,
+  pageNumber,
+  pageCountTotal,
+) {
   this.title = title;
   this.id = id;
-  this.pageCount = pageCount;
+  this.pageNumber = pageNumber;
+  this.pageCountTotal = pageCountTotal;
   this.authorNameLast = authorNameLast;
   this.authorNameFirst = authorNameFirst;
-
-  this.printInfo = function () {
-    return `title: ${this.title} \nby: ${this.authorNameFirst} ${this.authorNameLast} \nid: id${this.id} \npage count: ${this.pageCount}`;
-  };
 }
 
 Book.createInitialLibrary = function () {
@@ -44,18 +48,24 @@ Book.createInitialLibrary = function () {
     crypto.randomUUID(),
     "Doe",
     "John",
+    "123",
+    "245",
   );
   const bookSecondEntry = new Book(
     "Book of Jane",
     crypto.randomUUID(),
     "Doe",
     "Jane",
+    "133",
+    "257",
   );
   const bookThirdEntry = new Book(
     "Book of Smith",
     crypto.randomUUID(),
     "Smith",
     "John",
+    "245",
+    "260",
   );
   myLibrary[0] = bookFirstEntry;
   myLibrary[1] = bookSecondEntry;
@@ -84,7 +94,8 @@ function renderLibrary() {
     const bookDiv = document.createElement("div");
     const bookPara = document.createElement("p");
 
-    bookPara.textContent = `Title: ${book.title}\nAuthor: ${book.authorNameFirst} ${book.authorNameLast}`;
+    bookPara.textContent = `Title: ${book.title}\nAuthor: ${book.authorNameFirst} ${book.authorNameLast}\n`;
+    bookPara.textContent += `Page #: ${book.pageNumber}/${book.pageCountTotal}`;
     bookDiv.setAttribute("class", "book-card");
     bookDiv.setAttribute("data-id", book.id);
     bookDiv.appendChild(bookPara);
