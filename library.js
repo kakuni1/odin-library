@@ -18,11 +18,14 @@ openWindow.addEventListener("click", () => {
   dialog.showModal();
 });
 
-closeWindow.addEventListener("click", () => {
+closeWindow.addEventListener("click", (event) => {
+  event.preventDefault();
   dialog.close();
 });
 
-submit.addEventListener("click", () => {
+submit.addEventListener("click", (event) => {
+  event.preventDefault();
+  addBookToLibrary();
   dialog.close();
 });
 
@@ -87,11 +90,13 @@ function addBookToLibrary() {
   const bookTitle = document.getElementById("book-title");
   const authorNameLast = document.getElementById("author-last-name");
   const authorNameFirst = document.getElementById("author-first-name");
+  const pageNumberInput = document.getElementById("page-number");
+  const readStatusCheckbox = document.getElementById("read-status");
   const titleInput = bookTitle.value;
   const nameLastInput = authorNameLast.value;
   const nameFirstInput = authorNameFirst.value;
-  const pageNumber = pageNumber.value;
-  const readStatus = readStatus.value;
+  const pageNumber = pageNumberInput.value;
+  const readStatus = readStatusCheckbox.checked;
 
   myLibrary.push(
     new Book(
@@ -105,6 +110,7 @@ function addBookToLibrary() {
   );
 
   renderLibrary();
+  document.getElementById("book-form").reset();
 }
 
 function renderLibrary() {

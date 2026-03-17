@@ -27,22 +27,25 @@
         />
       </svg>
       <div class="shelf"></div>
-      <dialog id="open-window" closedby="any">
-        <h3>Add a new book to collection</h3>
-        <br />
-        <p>Title:</p>
-        <input type="text" id="book-title" />
-        <p>Author:</p>
-        <input type="text" id="author-first-name" placeholder="First Name" />
-        <input type="text" id="author-last-name" placeholder="Last Name" />
-        <br />
-        <input type="checkbox" />
-        <br />
-        <input type="number" id="page-number" placeholder="Page #" min="0" />
-        <br />
-        <input type="submit" id="submit" onclick="addBookToLibrary()" />
-        <button id="close-window">cancel</button>
-      </dialog>
+      <form id="book-form">
+        <dialog id="open-window" closedby="any">
+          <h3>Add a new book to collection</h3>
+          <br />
+          <p>Title:</p>
+          <input type="text" id="book-title" />
+          <p>Author:</p>
+          <input type="text" id="author-first-name" placeholder="First Name" />
+          <input type="text" id="author-last-name" placeholder="Last Name" />
+          <br />
+          <input type="number" id="page-number" placeholder="Page #" min="0" />
+          <br />
+          <p>Read status:</p>
+          <input type="checkbox" id="read-status" />
+          <br />
+          <input type="submit" id="submit" />
+          <button id="close-window">cancel</button>
+        </dialog>
+      </form>
     </div>
   </body>
 </html>
